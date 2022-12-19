@@ -5,7 +5,12 @@ module.exports = async function sandboxFn(context, script) {
     const safeVm = new Safeify({
         timeout: 3000,
         asyncTimeout: 60000,
-        unrestricted: true
+        unrestricted: true,
+        unsafe: {
+            modules: {
+                assert: 'assert'
+            }
+        }
     })
 
     script += "; return this;";
